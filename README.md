@@ -19,3 +19,8 @@ In order to connect to a server, the user must input WiFi credentials as well as
 
 ### Message format
 All messages to server are being sent in a JSON format `{<sensor name>: <sensor value>}`.
+
+## Unit tests
+In order to run unit tests, the user must have PlatformIO installed. After cloning the repository, navigate to the main project directory and run:
+```pio test -v
+```
