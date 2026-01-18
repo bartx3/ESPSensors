@@ -4,9 +4,7 @@
 
 #include "MqReader.hpp"
 
-MQReader::MQReader(const std::string& name, const byte pin) : SensorReader(name), pin(pin) {}
+MQReader::MQReader(const std::string &name, const byte pin)
+    : SensorReader(name), pin(pin) {}
 
-float MQReader::get_value()
-{
-    return analogRead(pin);
-}
+float MQReader::get_value() { return analogRead(pin); }

@@ -13,29 +13,26 @@
 std::set<std::unique_ptr<Publisher>> publishers;
 std::set<std::unique_ptr<ISensorReader>> sensors;
 
-
 void setup() {
-    auto LCD = new LcdPublisher(0x27, 21, 22);
-    publishers.emplace(LCD);
-    publishers.emplace(new WifiPublisher(SSID, PASSWORD, HOST, PORT));
+  auto LCD = new LcdPublisher(0x27, 21, 22);
+  publishers.emplace(LCD);
+  publishers.emplace(new WifiPublisher(SSID, PASSWORD, HOST, PORT));
 
-    sensors.emplace(new MQReader("Air Quality", 13));
-    LCD->publish("Warming up MQ sensors");
-    delay(10000);
+  sensors.emplace(new MQReader("Air Quality", 13));
+  LCD->publish("Warming up MQ sensors");
+  delay(10000);
 }
 
 void loop() {
-    JsonDocument doc;
-    JsonObject obj = doc.to<JsonObject>();
-    
-    for (auto& sensor: sensors)
-    {
-        sensor->addToJson(obj);
-    }
-    
-    for (auto& pub: publishers)
-    {
-        pub->publish(doc);
-    }
-    delay(1000);
+  JsonDocument doc;
+  auto obj = doc.to<JsonObject>();
+
+  for (auto &sensor : sensors) {
+    sensor->addToJson(obj);
+  }
+
+  for (auto &pub : publishers) {
+    pub->publish(doc);
+  }
+  delay(1000);
 }

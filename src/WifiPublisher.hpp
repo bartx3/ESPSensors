@@ -6,14 +6,14 @@
 
 #include "Publisher.hpp"
 
-class WifiPublisher : public Publisher
-{
+class WifiPublisher : public Publisher {
 public:
-    WifiPublisher(const std::string& ssid, const std::string& password, const std::string& host, uint16_t port);
-    void publish(const std::string& str) override;
-    void publish(const JsonDocument& json) override;
+  WifiPublisher(const std::string &ssid, const std::string &password,
+                const std::string &host, uint16_t port);
+  void publish(const std::string &str) override;
+  void publish(const JsonDocument &json) override;
 
 private:
-    std::string m_host;
-    uint16_t m_port;
+  std::string m_host;
+  uint16_t m_port;
 };

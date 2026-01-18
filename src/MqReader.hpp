@@ -6,11 +6,11 @@
 
 #include "SensorReader.hpp"
 
-class MQReader : public SensorReader<float>
-{
+class MQReader : public SensorReader<float> {
 public:
-    MQReader(const std::string& name, byte pin);
-    float get_value() override;
+  MQReader(const std::string &name, byte pin);
+  float get_value() override;
+
 protected:
-    const byte pin;
+  const byte pin;
 };

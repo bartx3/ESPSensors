@@ -3,14 +3,13 @@
 //
 #pragma once
 
-#include <string>
 #include <ArduinoJson.h>
+#include <string>
 
-class Publisher
-{
+class Publisher {
 public:
-    virtual ~Publisher() = default;
+  virtual ~Publisher() = default;
 
-    virtual void publish(const std::string& str);
-    virtual void publish(const JsonDocument& json);
+  virtual void publish(const std::string &str);
+  virtual void publish(const JsonDocument &json);
 };
