@@ -7,6 +7,9 @@
 #include "Publisher.hpp"
 #include <LiquidCrystal_I2C.h>
 
+namespace utils
+{
+
 class LcdPublisher : public Publisher {
 public:
   LcdPublisher(byte i2cAddr, byte sda, byte scl);
@@ -15,3 +18,5 @@ public:
 
   LiquidCrystal_I2C *lcd = nullptr;
 };
+
+} // namespace utils

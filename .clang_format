@@ -2,3 +2,5 @@
 BasedOnStyle: Google
 ColumnLimit: 160
 Standard: c++26
+NamespaceIndentation: None
+IndentWidth: 2

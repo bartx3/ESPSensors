@@ -6,6 +6,8 @@
 
 #include <ArduinoJson.h>
 
+namespace utils {
+
 class ISensorReader {
 public:
   virtual ~ISensorReader() = default;
@@ -24,3 +26,5 @@ public:
 protected:
   explicit SensorReader(const std::string &name) : ISensorReader(name) {}
 };
+
+} // namespace utils

@@ -3,7 +3,14 @@
 //
 
 #include "LcdPublisher.hpp"
+
+#include <cctype>
+#include <iomanip>
+#include <sstream>
+#include <cctype>
 #include <Wire.h>
+
+namespace utils {
 
 LcdPublisher::LcdPublisher(const byte i2cAddr, const byte sda, const byte scl) {
   // Initialize I2C with custom pins
@@ -47,34 +54,36 @@ void LcdPublisher::publish(const JsonDocument &json) {
   // Row 0: First key-value pair or message
   // Row 1: Second key-value pair or additional info
 
-  int row = 0;
+  std::string headers;
+  std::string values;
   auto obj = json.as<JsonObjectConst>();
   for (JsonPairConst kv : obj) {
-    if (row >= 2)
-      break; // Only 2 rows available
-
-    lcd->setCursor(0, row);
-
-    // Format: "Key: Value"
-    String line = String(kv.key().c_str()) + ": ";
-
-    // Handle different value types
-    if (kv.value().is<float>() || kv.value().is<double>()) {
-      line += String(kv.value().as<float>(), 1);
-    } else if (kv.value().is<int>()) {
-      line += String(kv.value().as<int>());
-    } else if (kv.value().is<const char *>()) {
-      line += String(kv.value().as<const char *>());
-    } else if (kv.value().is<bool>()) {
-      line += kv.value().as<bool>() ? "true" : "false";
+    std::string header;
+    std::string key = kv.key().c_str();
+    for (auto &ch : key) {
+      if (not std::isspace(ch) and ch == toUpperCase(ch)) {
+        header += ch;
+      }
     }
+    std::stringstream stream;
+    stream << std::setprecision(2) << kv.value().as<std::string>();
+    std::string value = stream.str();
 
-    // Truncate to 16 characters
-    if (line.length() > 16) {
-      line = line.substring(0, 16);
+    header += " ";
+    value += " ";
+    if (header.length() < value.length()) {
+      header += std::string(value.length() - header.length(), ' ');
+    } else {
+      value += std::string(header.length() - value.length(), ' ');
     }
-
-    lcd->print(line);
-    row++;
+    headers += header;
+    values += value;
   }
+
+  lcd->setCursor(0, 0);
+  lcd->print(headers.c_str());
+  lcd->setCursor(0, 1);
+  lcd->print(values.c_str());
 }
+
+} // namespace utils

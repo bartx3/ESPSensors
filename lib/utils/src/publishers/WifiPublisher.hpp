@@ -6,6 +6,8 @@
 
 #include "Publisher.hpp"
 
+namespace utils {
+
 class WifiPublisher : public Publisher {
 public:
   WifiPublisher(const std::string &ssid, const std::string &password,
@@ -17,3 +19,5 @@ private:
   std::string m_host;
   uint16_t m_port;
 };
+
+} // namespace utils

@@ -5,6 +5,8 @@
 #include "WifiPublisher.hpp"
 #include <WiFi.h>
 
+namespace utils {
+
 WifiPublisher::WifiPublisher(const std::string &ssid,
                              const std::string &password,
                              const std::string &host, const uint16_t port)
@@ -59,3 +61,5 @@ void WifiPublisher::publish(const JsonDocument &json) {
     client.stop();
   }
 }
+
+} // namespace utils

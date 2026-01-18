@@ -6,6 +6,8 @@
 #include <ArduinoJson.h>
 #include <string>
 
+namespace utils {
+
 class Publisher {
 public:
   virtual ~Publisher() = default;
@@ -13,3 +15,5 @@ public:
   virtual void publish(const std::string &str);
   virtual void publish(const JsonDocument &json);
 };
+
+} // namespace utils
