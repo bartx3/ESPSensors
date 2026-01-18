@@ -2,7 +2,7 @@
 // Created by bartek on 1/18/26.
 //
 
-#include "MqReader.hpp"
+#include "sensors/MqReader.hpp"
 
 namespace utils {
 

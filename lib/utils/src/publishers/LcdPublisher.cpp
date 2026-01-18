@@ -2,7 +2,7 @@
 // Created by bartek on 1/17/26.
 //
 
-#include "LcdPublisher.hpp"
+#include "publishers/LcdPublisher.hpp"
 
 #include <cctype>
 #include <iomanip>

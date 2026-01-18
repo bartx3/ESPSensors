@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "SensorReader.hpp"
+#include "sensors/SensorReader.hpp"
 
 namespace utils {
 

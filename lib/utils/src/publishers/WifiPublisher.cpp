@@ -2,7 +2,7 @@
 // Created by bartek on 1/17/26.
 //
 
-#include "WifiPublisher.hpp"
+#include "publishers/WifiPublisher.hpp"
 #include <WiFi.h>
 
 namespace utils {
