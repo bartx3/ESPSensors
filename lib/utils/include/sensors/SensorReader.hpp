@@ -6,6 +6,8 @@
 
 #include <ArduinoJson.h>
 
+#include <utility>
+
 namespace utils {
 
 class ISensorReader {
@@ -14,7 +16,7 @@ public:
   virtual void addToJson(JsonObject &obj) = 0;
 
 protected:
-  explicit ISensorReader(const std::string &name) : name(name) {};
+  explicit ISensorReader(std::string name) : name(std::move(name)) {};
   std::string name;
 };
 

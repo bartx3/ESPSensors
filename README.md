@@ -13,6 +13,7 @@ In order to connect to a server, the user must input WiFi credentials as well as
 
 #define SSID "ssid"
 #define PASSWORD "1234"
+#define MY_ID "ID"
 #define HOST "192.168.1.100"
 #define PORT 8080
 ```
